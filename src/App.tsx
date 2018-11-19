@@ -21,14 +21,14 @@ class App extends React.Component<{}, IState> {
 			memes: [],
 			open: false,
 			uploadFileList: null
-		}     	
+		}     
+		
+		this.fetchMemes("")
 		this.selectNewMeme = this.selectNewMeme.bind(this)
-		this.fetchMemes = this.fetchMemes.bind(this)
-		this.fetchMemes("")	
 		this.handleFileUpload = this.handleFileUpload.bind(this)
+		this.fetchMemes = this.fetchMemes.bind(this)
 		this.uploadMeme = this.uploadMeme.bind(this)
-
-
+		
 	}
 
 	public render() {
@@ -47,7 +47,7 @@ class App extends React.Component<{}, IState> {
 						<MemeDetail currentMeme={this.state.currentMeme} />
 					</div>
 					<div className="col-5">
-					<MemeList memes={this.state.memes} selectNewMeme={this.selectNewMeme} searchByTag={this.fetchMemes}/>
+						<MemeList memes={this.state.memes} selectNewMeme={this.selectNewMeme} searchByTag={this.fetchMemes}/>
 					</div>
 				</div>
 			</div>
@@ -91,16 +91,18 @@ class App extends React.Component<{}, IState> {
 			currentMeme: newMeme
 		})
 	}
+
+	// GET memes
 	private fetchMemes(tag: any) {
 		let url = "http://phase2apitest.azurewebsites.net/api/meme"
 		if (tag !== "") {
 			url += "/tag?=" + tag
 		}
-		fetch(url, {
-			method: 'GET'
-		})
-		.then(res => res.json())
-		.then(json => {
+        fetch(url, {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(json => {
 			let currentMeme = json[0]
 			if (currentMeme === undefined) {
 				currentMeme = {"id":0, "title":"No memes (╯°□°）╯︵ ┻━┻","url":"","tags":"try a different tag","uploaded":"","width":"0","height":"0"}
@@ -109,44 +111,48 @@ class App extends React.Component<{}, IState> {
 				currentMeme,
 				memes: json
 			})
-		});
+        });
 	}
+
+	// Sets file list
 	private handleFileUpload(fileList: any) {
 		this.setState({
 			uploadFileList: fileList.target.files
 		})
 	}
+
+	// POST meme
 	private uploadMeme() {
 		const titleInput = document.getElementById("meme-title-input") as HTMLInputElement
 		const tagInput = document.getElementById("meme-tag-input") as HTMLInputElement
 		const imageFile = this.state.uploadFileList[0]
-	
+
 		if (titleInput === null || tagInput === null || imageFile === null) {
 			return;
 		}
-	
+
 		const title = titleInput.value
 		const tag = tagInput.value
 		const url = "http://phase2apitest.azurewebsites.net/api/meme/upload"
-	
+
 		const formData = new FormData()
 		formData.append("Title", title)
 		formData.append("Tags", tag)
 		formData.append("image", imageFile)
-	
+
 		fetch(url, {
 			body: formData,
 			headers: {'cache-control': 'no-cache'},
 			method: 'POST'
 		})
-		.then((response : any) => {
+        .then((response : any) => {
 			if (!response.ok) {
 				// Error State
 				alert(response.statusText)
 			} else {
 				location.reload()
 			}
-		})
+		  })
 	}
 }
 
