@@ -21,6 +21,17 @@ body{
   padding-top: 10px;
 }
 
+.facebook-component{
+  position: fixed;
+  left: 10px;
+}
+
+.shareButton{
+  position: fixed;
+  left: 39%;
+  top: 68%;
+}
+
 /* Selected Meme */
 .meme-wrapper {
   padding-top:20px;

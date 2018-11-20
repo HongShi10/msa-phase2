@@ -1,0 +1,16 @@
+.btnFacebook { 
+  width: 170px;
+  height:38px;  
+  border-radius: 4px;
+  background: #3b5998;
+  color:white;
+  border:0px transparent;  
+  text-align: center;
+  margin:5px;
+  display: inline-block;
+}
+
+.btnFacebook:hover {
+    background: #3b5998;
+    opacity: 0.6;
+  }

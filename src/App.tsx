@@ -5,6 +5,9 @@ import MemeDetail from './components/MemeDetail';
 import MemeList from './components/MemeList';
 import PatrickLogo from './patrick-logo.png';
 
+import Facebook from './components/Facebook';
+
+import { FacebookShareButton } from "react-simple-share";
 
 interface IState {
 	currentMeme: any,
@@ -37,6 +40,7 @@ class App extends React.Component<{}, IState> {
 		<div>
 			<div className="header-wrapper">
 				<div className="container header">
+				<div className="facebook-component"><Facebook/></div>
 					<img src={PatrickLogo} height='40'/>&nbsp; My Meme Bank - MSA 2018 &nbsp;
 					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add Meme</div>
 				</div>
@@ -45,6 +49,13 @@ class App extends React.Component<{}, IState> {
 				<div className="row">
 					<div className="col-7">
 						<MemeDetail currentMeme={this.state.currentMeme} />
+						<div className="shareButton">
+							<FacebookShareButton
+							url={this.state.currentMeme.url}
+							color="#3B5998"
+							size="50px"
+						/>
+						</div>
 					</div>
 					<div className="col-5">
 						<MemeList memes={this.state.memes} selectNewMeme={this.selectNewMeme} searchByTag={this.fetchMemes}/>
@@ -54,18 +65,18 @@ class App extends React.Component<{}, IState> {
 			<Modal open={open} onClose={this.onCloseModal}>
 				<form>
 					<div className="form-group">
-						<label>Meme Title</label>
-						<input type="text" className="form-control" id="meme-title-input" placeholder="Enter Title" />
-						<small className="form-text text-muted">You can edit any meme later</small>
+						<label>Song Title</label>
+						<input type="text" className="form-control" id="meme-title-input" placeholder="Enter Song Title" />
 					</div>
 					<div className="form-group">
-						<label>Tag</label>
-						<input type="text" className="form-control" id="meme-tag-input" placeholder="Enter Tag" />
-						<small className="form-text text-muted">Tag is used for search</small>
+						<label>Genre</label>
+						<input type="text" className="form-control" id="meme-tag-input" placeholder="Enter Genre" />
+						<small className="form-text text-muted">Genre is used in search</small>
 					</div>
 					<div className="form-group">
-						<label>Image</label>
+						<label>Album Art</label>
 						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="meme-image-input" />
+						<small className="form-text text-muted">Add an album/song art</small>
 					</div>
 
 					<button type="button" className="btn" onClick={this.uploadMeme}>Upload</button>

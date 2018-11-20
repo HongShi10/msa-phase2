@@ -36,9 +36,10 @@ export default class MemeDetail extends React.Component<IProps, IState> {
                 </div>
                 
                 <div className="row meme-done-button">
-                    <div className="btn btn-primary btn-action" onClick={this.downloadMeme.bind(this, currentMeme.url)}>Download </div>
+                    <div className="btn btn-primary btn-action" onClick={this.downloadMeme.bind(this, currentMeme.url)}>Listen </div>
                     <div className="btn btn-primary btn-action" onClick={this.onOpenModal}>Edit </div>
                     <div className="btn btn-primary btn-action" onClick={this.deleteMeme.bind(this, currentMeme.id)}>Delete </div>
+                    
                 </div>
                 <Modal open={open} onClose={this.onCloseModal}>
                     <form>
