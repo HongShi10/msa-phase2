@@ -21,12 +21,10 @@ namespace SongBank.Controllers
         private readonly SongBankContext _context;
         private IConfiguration _configuration;
 
-
         public SongItemsController(SongBankContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;
-
         }
 
         // GET: api/SongItems
@@ -131,15 +129,34 @@ namespace SongBank.Controllers
             return _context.SongItem.Any(e => e.Id == id);
         }
 
-        // GET: api/SongItem/Genre
-        [Route("Genre")]
+        // GET: api/SongItem/Tags
+        [Route("tags")]
         [HttpGet]
-        public async Task<List<string>> GetGenre()
+        public async Task<List<string>> GetTags()
         {
-            var songs = (from s in _context.SongItem
-                         select s.Genre).Distinct();
+            var memes = (from m in _context.SongItem
+                         select m.Tags).Distinct();
 
-            var returned = await songs.ToListAsync();
+            var returned = await memes.ToListAsync();
+
+            return returned;
+        }
+        // GET: api/SongItem/Tags
+
+        [HttpGet]
+        [Route("tag")]
+        public async Task<List<SongItem>> GetTagsItem([FromQuery] string tags)
+        {
+            var memes = from m in _context.SongItem
+                        select m; //get all the songs
+
+
+            if (!String.IsNullOrEmpty(tags)) //make sure user gave a tag to search
+            {
+                memes = memes.Where(s => s.Tags.ToLower().Equals(tags.ToLower())); // find the entries with the search tag and reassign
+            }
+
+            var returned = await memes.ToListAsync(); //return the songs
 
             return returned;
         }
@@ -162,16 +179,19 @@ namespace SongBank.Controllers
                         return BadRequest("An error has occured while uploading your file. Please try again.");
                     }
 
-                    SongItem songitem = new SongItem();
-                    songitem.Title = song.Title;
-                    songitem.Genre = song.Genre;
+                    SongItem songItem = new SongItem();
+                    songItem.Title = song.Title;
+                    songItem.Tags = song.Tags;
 
                     System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
-                    songitem.Height = image.Height.ToString();
-                    songitem.Width = image.Width.ToString();
-                    songitem.Url = cloudBlock.SnapshotQualifiedUri.AbsoluteUri;
+                    songItem.Height = image.Height.ToString();
+                    songItem.Width = image.Width.ToString();
+                    songItem.Url = cloudBlock.SnapshotQualifiedUri.AbsoluteUri;
+                    songItem.Uploaded = DateTime.Now.ToString();
+                    songItem.Youtube = song.Youtube;
 
-                    _context.SongItem.Add(songitem);
+
+                    _context.SongItem.Add(songItem);
                     await _context.SaveChangesAsync();
 
                     return Ok($"File: {song.Title} has successfully uploaded");
@@ -243,5 +263,4 @@ namespace SongBank.Controllers
             }
         }
     }
-
-    }
+}

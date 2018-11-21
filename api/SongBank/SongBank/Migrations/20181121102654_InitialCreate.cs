@@ -14,10 +14,11 @@ namespace SongBank.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
-                    Youtube = table.Column<string>(nullable: true),
-                    Genre = table.Column<string>(nullable: true),
+                    Tags = table.Column<string>(nullable: true),
+                    Uploaded = table.Column<string>(nullable: true),
                     Width = table.Column<string>(nullable: true),
-                    Height = table.Column<string>(nullable: true)
+                    Height = table.Column<string>(nullable: true),
+                    Youtube = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

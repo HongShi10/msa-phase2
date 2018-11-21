@@ -20,11 +20,13 @@ namespace SongBank.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Genre");
-
                     b.Property<string>("Height");
 
+                    b.Property<string>("Tags");
+
                     b.Property<string>("Title");
+
+                    b.Property<string>("Uploaded");
 
                     b.Property<string>("Url");
 

@@ -8,7 +8,7 @@ using SongBank.Models;
 namespace SongBank.Migrations
 {
     [DbContext(typeof(SongBankContext))]
-    [Migration("20181121035025_InitialCreate")]
+    [Migration("20181121102654_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,11 +22,13 @@ namespace SongBank.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Genre");
-
                     b.Property<string>("Height");
 
+                    b.Property<string>("Tags");
+
                     b.Property<string>("Title");
+
+                    b.Property<string>("Uploaded");
 
                     b.Property<string>("Url");
 

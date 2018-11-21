@@ -31,10 +31,7 @@ export default class MemeDetail extends React.Component<IProps, IState> {
 		return (
 			<div className="container meme-wrapper">
                 <div className="row meme-heading">
-                    <b>{currentMeme.title}</b>&nbsp; ({currentMeme.tags})
-                </div>
-                <div className="row meme-date">
-                    {currentMeme.uploaded}
+                    <b>{currentMeme.title}</b>&nbsp;({currentMeme.youtube})
                 </div>
                 <div className="row meme-img">
                     <img src={currentMeme.url}/>
@@ -43,10 +40,10 @@ export default class MemeDetail extends React.Component<IProps, IState> {
                 <div className="row meme-done-button">
                     <div className="btn btn-primary btn-action" onClick={this.onOpenModal}>Edit </div>
                     <div className="btn btn-primary btn-action" onClick={this.deleteMeme.bind(this, currentMeme.id)}>Delete </div>
-                    <button className="playButton"><img className="play" src={youtubeButton} onClick={this.downloadMeme.bind(this, currentMeme.url)} /></button>
+                    <button className="playButton"><img className="play" src={youtubeButton} onClick={this.downloadMeme.bind(this, currentMeme.youtube)} /></button>
                     <div className="shareButton">
 							<FacebookShareButton
-							url={currentMeme.url}
+							url={currentMeme.youtube}
 							color="#3B5998"
 							size="50px"
 						/>
@@ -62,13 +59,9 @@ export default class MemeDetail extends React.Component<IProps, IState> {
                             <input type="text" className="form-control" id="meme-edit-title-input" placeholder="Enter Song Title"/>
                         </div>
                         <div className="form-group">
-                            <label>Genre</label>
-                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Genre"/>
-                            <small className="form-text text-muted">Genre is used for search</small>
-                        </div>
-                        <div className="form-group">
-                            <label>Youtube Link</label>
-                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Youtube Link"/>
+                            <label>Artist</label>
+                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Artist"/>
+                            <small className="form-text text-muted">Artist is used for search</small>
                         </div>
                         <button type="button" className="btn" onClick={this.updateMeme}>Save</button>
                     </form>
@@ -88,13 +81,12 @@ export default class MemeDetail extends React.Component<IProps, IState> {
 	};
 
     // Open meme image in new tab
-    private downloadMeme(url: any) {
-        window.open(url);
+    private downloadMeme(youtube: any) {
+        window.open(youtube)     
     }
-
     // DELETE meme
     private deleteMeme(id: any) {
-        const url = "http://phase2apitest.azurewebsites.net/api/meme/" + id
+        const url = "https://songapiphase2.azurewebsites.net/api/SongItems/" + id
 
 		fetch(url, {
 			method: 'DELETE'
@@ -113,23 +105,23 @@ export default class MemeDetail extends React.Component<IProps, IState> {
     // PUT meme
     private updateMeme(){
         const titleInput = document.getElementById("meme-edit-title-input") as HTMLInputElement
-        const tagInput = document.getElementById("meme-edit-tag-input") as HTMLInputElement
+        const genreInput = document.getElementById("meme-edit-tag-input") as HTMLInputElement
 
-        if (titleInput === null || tagInput === null) {
+        if (titleInput === null || genreInput === null) {
 			return;
 		}
 
         const currentMeme = this.props.currentMeme
-        const url = "http://phase2apitest.azurewebsites.net/api/meme/" + currentMeme.id
+        const url = "https://songapiphase2.azurewebsites.net/api/SongItems/" + currentMeme.id
         const updatedTitle = titleInput.value
-        const updatedTag = tagInput.value
+        const updatedTag = genreInput.value
 		fetch(url, {
 			body: JSON.stringify({
                 "height": currentMeme.height,
                 "id": currentMeme.id,
-                "tags": updatedTag,
+                "genre": updatedTag,
                 "title": updatedTitle,
-                "uploaded": currentMeme.uploaded,
+                "youtube": currentMeme.youtube,
                 "url": currentMeme.url,
                 "width": currentMeme.width
             }),

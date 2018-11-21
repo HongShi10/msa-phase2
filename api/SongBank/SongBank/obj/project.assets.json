@@ -2751,15 +2751,6 @@
           "lib/netstandard2.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": {}
         }
       },
-      "Microsoft.Web.Xdt/2.1.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Web.XmlTransform.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Web.XmlTransform.dll": {}
-        }
-      },
       "Microsoft.Win32.Registry/4.5.0": {
         "type": "package",
         "dependencies": {
@@ -2836,18 +2827,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
-        }
-      },
-      "NuGet.Core/2.14.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Web.Xdt": "2.1.0"
-        },
-        "compile": {
-          "lib/net40-Client/NuGet.Core.dll": {}
-        },
-        "runtime": {
-          "lib/net40-Client/NuGet.Core.dll": {}
         }
       },
       "NuGet.Frameworks/4.7.0": {
@@ -7810,18 +7789,6 @@
         "microsoft.visualstudio.web.codegenerators.mvc.nuspec"
       ]
     },
-    "Microsoft.Web.Xdt/2.1.0": {
-      "sha512": "pQ23sJ99NiZRC6MnWa5jbXZiHo8R4dcPX3ou8YWTeBfkUX4++Olu0hGf64Zfzg1IEqituJXW+WskCflOGxzeTw==",
-      "type": "package",
-      "path": "microsoft.web.xdt/2.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Web.XmlTransform.dll",
-        "microsoft.web.xdt.2.1.0.nupkg.sha512",
-        "microsoft.web.xdt.nuspec"
-      ]
-    },
     "Microsoft.Win32.Registry/4.5.0": {
       "sha512": "vduxuHEqRgRrTE8wYG8Wxj/+6wwzddOmZzjKZx6rFMc/91aUBxI5etAFYxesoNaIja5NpgSTcnk6cN8BeYXf9A==",
       "type": "package",
@@ -8053,18 +8020,6 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
-      ]
-    },
-    "NuGet.Core/2.14.0": {
-      "sha512": "P0rzDBgODTRWyakVkB3evtofDcL6gfIXeJqluTwXARZWszJakmMOyrmnXf5E3ZflO6G9fxioGiwfov6mfgzXuQ==",
-      "type": "package",
-      "path": "nuget.core/2.14.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40-Client/NuGet.Core.dll",
-        "nuget.core.2.14.0.nupkg.sha512",
-        "nuget.core.nuspec"
       ]
     },
     "NuGet.Frameworks/4.7.0": {
@@ -13151,7 +13106,6 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 2.1.4",
       "Microsoft.NETCore.App >= 2.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.1",
-      "NuGet.Core >= 2.14.0",
       "Swashbuckle.AspNetCore >= 4.0.1",
       "System.Drawing.Common >= 4.5.1",
       "WindowsAzure.Storage >= 9.3.2"
@@ -13222,10 +13176,6 @@
             "target": "Package",
             "version": "[2.1.1, )"
           },
-          "NuGet.Core": {
-            "target": "Package",
-            "version": "[2.14.0, )"
-          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[4.0.1, )"
@@ -13246,27 +13196,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Xdt 2.1.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Xdt",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'NuGet.Core 2.14.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "NuGet.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

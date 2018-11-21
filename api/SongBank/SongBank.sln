@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SongBank", "SongBank\SongBank.csproj", "{3391E16C-BCE7-4F18-B6E5-261628286578}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SongBank", "SongBank\SongBank.csproj", "{FA0B0026-AC37-4E87-9F1A-788FD35C9714}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3391E16C-BCE7-4F18-B6E5-261628286578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3391E16C-BCE7-4F18-B6E5-261628286578}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3391E16C-BCE7-4F18-B6E5-261628286578}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3391E16C-BCE7-4F18-B6E5-261628286578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA0B0026-AC37-4E87-9F1A-788FD35C9714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA0B0026-AC37-4E87-9F1A-788FD35C9714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA0B0026-AC37-4E87-9F1A-788FD35C9714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA0B0026-AC37-4E87-9F1A-788FD35C9714}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {67CABC27-E328-4617-9151-7A5BB8D5844A}
+		SolutionGuid = {BF811193-278C-4B95-80F4-7F466D27AA3C}
 	EndGlobalSection
 EndGlobal

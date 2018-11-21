@@ -25,8 +25,9 @@ namespace SongBank.Models
                     {
                         Title = "Is Mayo an Instrument?",
                         Url = "https://i.kym-cdn.com/photos/images/original/001/371/723/be6.jpg",
-                        Youtube = "https://www.youtube.com/watch?v=Bxpdqc84hQI",
-                        Genre = "spongebob",
+                        Youtube = "www.youtube.com",
+                        Tags = "spongebob",
+                        Uploaded = "07-10-18 4:20T18:25:43.511Z",
                         Width = "768",
                         Height = "432"
                     }

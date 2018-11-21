@@ -17,7 +17,7 @@ export default class MemeList extends React.Component<IProps, {}> {
 			<div className="container meme-list-wrapper">
                 <div className="row meme-list-heading">
                     <div className="input-group">
-                        <input type="text" id="search-tag-textbox" className="form-control" placeholder="Search By Genre" />
+                        <input type="text" id="search-tag-textbox" className="form-control" placeholder="Search By Artist" />
                         <div className="input-group-append">
                             <div className="btn btn-outline-secondary search-button" onClick = {this.searchByTag}>Search</div>
                         </div>
@@ -47,7 +47,7 @@ export default class MemeList extends React.Component<IProps, {}> {
             const meme = memeList[i]
             children.push(<td key={"id" + i}>{meme.id}</td>)
             children.push(<td key={"name" + i}>{meme.title}</td>)
-            children.push(<td key={"tags" + i}>{meme.tags}</td>)
+            children.push(<td key={"genre" + i}>{meme.genre}</td>)
             table.push(<tr key={i+""} id={i+""} onClick= {this.selectRow.bind(this, i)}>{children}</tr>)
         }
         return table

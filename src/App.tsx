@@ -18,7 +18,7 @@ class App extends React.Component<{}, IState> {
 	constructor(props: any) {
         super(props)
         this.state = {
-			currentMeme: {"id":0, "title":"Loading ","url":"","tags":"⚆ _ ⚆","uploaded":"","width":"0","height":"0"},
+			currentMeme: {"id":0, "title":"Loading ","url":"","genre":"⚆ _ ⚆","youtube":"","width":"0","height":"0"},
 			memes: [],
 			open: false,
 			uploadFileList: null
@@ -62,9 +62,9 @@ class App extends React.Component<{}, IState> {
 						<input type="text" className="form-control" id="meme-title-input" placeholder="Enter Song Title" />
 					</div>
 					<div className="form-group">
-						<label>Genre</label>
-						<input type="text" className="form-control" id="meme-tag-input" placeholder="Enter Genre" />
-						<small className="form-text text-muted">Genre is used in search</small>
+						<label>Artist</label>
+						<input type="text" className="form-control" id="meme-tag-input" placeholder="Enter Artist" />
+						<small className="form-text text-muted">Artist is used in search</small>
 					</div>
 					<div className="form-group">
 						<label>Album Art</label>
@@ -73,7 +73,7 @@ class App extends React.Component<{}, IState> {
 					</div>
 					<div className="form-group">
                             <label>Youtube Link</label>
-                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Youtube Link"/>
+                            <input type="text" className="form-control" id="youtube-tag-input" placeholder="Enter Youtube Link"/>
                         </div>
 
 					<button type="button" className="btn" onClick={this.uploadMeme}>Upload</button>
@@ -101,10 +101,10 @@ class App extends React.Component<{}, IState> {
 	}
 
 	// GET memes
-	private fetchMemes(tag: any) {
-		let url = "http://phase2apitest.azurewebsites.net/api/meme"
-		if (tag !== "") {
-			url += "/tag?=" + tag
+	private fetchMemes(genre: any) {
+		let url = "https://songapiphase2.azurewebsites.net/api/SongItems"
+		if (genre !== "") {
+			url += "/Genre?=" + genre
 		}
         fetch(url, {
             method: 'GET'
@@ -113,7 +113,7 @@ class App extends React.Component<{}, IState> {
         .then(json => {
 			let currentMeme = json[0]
 			if (currentMeme === undefined) {
-				currentMeme = {"id":0, "title":"No memes (╯°□°）╯︵ ┻━┻","url":"","tags":"try a different tag","uploaded":"","width":"0","height":"0"}
+				currentMeme = {"id":0, "title":"No memes (╯°□°）╯︵ ┻━┻","url":"","genre":"try a different tag","youtube":"","width":"0","height":"0"}
 			}
 			this.setState({
 				currentMeme,
@@ -133,20 +133,24 @@ class App extends React.Component<{}, IState> {
 	private uploadMeme() {
 		const titleInput = document.getElementById("meme-title-input") as HTMLInputElement
 		const tagInput = document.getElementById("meme-tag-input") as HTMLInputElement
+		const youtubeInput = document.getElementById("youtube-tag-input") as HTMLInputElement
+
 		const imageFile = this.state.uploadFileList[0]
 
-		if (titleInput === null || tagInput === null || imageFile === null) {
+		if (titleInput === null || tagInput === null || imageFile === null || youtubeInput === null) {
 			return;
 		}
 
 		const title = titleInput.value
 		const tag = tagInput.value
-		const url = "http://phase2apitest.azurewebsites.net/api/meme/upload"
+		const youtube = youtubeInput.value
+		const url = "https://songapiphase2.azurewebsites.net/api/SongItems/upload"
 
 		const formData = new FormData()
 		formData.append("Title", title)
-		formData.append("Tags", tag)
+		formData.append("Artist", tag)
 		formData.append("image", imageFile)
+		formData.append("youtube", youtube)
 
 		fetch(url, {
 			body: formData,
