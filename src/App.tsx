@@ -7,8 +7,6 @@ import PatrickLogo from './patrick-logo.png';
 
 import Facebook from './components/Facebook';
 
-import { FacebookShareButton } from "react-simple-share";
-
 interface IState {
 	currentMeme: any,
 	memes: any[],
@@ -41,21 +39,16 @@ class App extends React.Component<{}, IState> {
 			<div className="header-wrapper">
 				<div className="container header">
 				<div className="facebook-component"><Facebook/></div>
-					<img src={PatrickLogo} height='40'/>&nbsp; My Meme Bank - MSA 2018 &nbsp;
-					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add Meme</div>
+					<img src={PatrickLogo} height='40'/>&nbsp; Song Bank &nbsp;
+					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add Song</div>
 				</div>
 			</div>
 			<div className="container">
 				<div className="row">
 					<div className="col-7">
 						<MemeDetail currentMeme={this.state.currentMeme} />
-						<div className="shareButton">
-							<FacebookShareButton
-							url={this.state.currentMeme.url}
-							color="#3B5998"
-							size="50px"
-						/>
-						</div>
+						
+					
 					</div>
 					<div className="col-5">
 						<MemeList memes={this.state.memes} selectNewMeme={this.selectNewMeme} searchByTag={this.fetchMemes}/>
@@ -78,6 +71,10 @@ class App extends React.Component<{}, IState> {
 						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="meme-image-input" />
 						<small className="form-text text-muted">Add an album/song art</small>
 					</div>
+					<div className="form-group">
+                            <label>Youtube Link</label>
+                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Youtube Link"/>
+                        </div>
 
 					<button type="button" className="btn" onClick={this.uploadMeme}>Upload</button>
 				</form>

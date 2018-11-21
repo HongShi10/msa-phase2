@@ -1,5 +1,10 @@
 import * as React from "react";
 import Modal from 'react-responsive-modal';
+import youtubeButton from './playbutton.png';
+
+import { FacebookShareButton } from "react-simple-share";
+
+
 
 interface IProps {
     currentMeme: any
@@ -36,22 +41,34 @@ export default class MemeDetail extends React.Component<IProps, IState> {
                 </div>
                 
                 <div className="row meme-done-button">
-                    <div className="btn btn-primary btn-action" onClick={this.downloadMeme.bind(this, currentMeme.url)}>Listen </div>
                     <div className="btn btn-primary btn-action" onClick={this.onOpenModal}>Edit </div>
                     <div className="btn btn-primary btn-action" onClick={this.deleteMeme.bind(this, currentMeme.id)}>Delete </div>
+                    <button className="playButton"><img className="play" src={youtubeButton} onClick={this.downloadMeme.bind(this, currentMeme.url)} /></button>
+                    <div className="shareButton">
+							<FacebookShareButton
+							url={currentMeme.url}
+							color="#3B5998"
+							size="50px"
+						/>
+						</div>
+                    
+
                     
                 </div>
                 <Modal open={open} onClose={this.onCloseModal}>
                     <form>
                         <div className="form-group">
-                            <label>Meme Title</label>
-                            <input type="text" className="form-control" id="meme-edit-title-input" placeholder="Enter Title"/>
-                            <small className="form-text text-muted">You can edit any meme later</small>
+                            <label>Song Title</label>
+                            <input type="text" className="form-control" id="meme-edit-title-input" placeholder="Enter Song Title"/>
                         </div>
                         <div className="form-group">
-                            <label>Tag</label>
-                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Tag"/>
-                            <small className="form-text text-muted">Tag is used for search</small>
+                            <label>Genre</label>
+                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Genre"/>
+                            <small className="form-text text-muted">Genre is used for search</small>
+                        </div>
+                        <div className="form-group">
+                            <label>Youtube Link</label>
+                            <input type="text" className="form-control" id="meme-edit-tag-input" placeholder="Enter Youtube Link"/>
                         </div>
                         <button type="button" className="btn" onClick={this.updateMeme}>Save</button>
                     </form>

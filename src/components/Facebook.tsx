@@ -21,12 +21,12 @@ export default class Facebook extends React.Component<{}> {
         userID: response.userID,
         name: response.name,
         picture: response.picture.data.url
+        
     })
   }
 
   public render() {
     let fbContent;
-
     if (this.state.isLoggedIn) {
       fbContent = (
         <div >

@@ -1,0 +1,14 @@
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\bin\Debug\netcoreapp2.1\SongBank.deps.json
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\bin\Debug\netcoreapp2.1\SongBank.runtimeconfig.json
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\bin\Debug\netcoreapp2.1\SongBank.runtimeconfig.dev.json
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\bin\Debug\netcoreapp2.1\SongBank.dll
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.csprojAssemblyReference.cache
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.csproj.CoreCompileInputs.cache
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.RazorAssemblyInfo.cache
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.RazorAssemblyInfo.cs
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.AssemblyInfoInputs.cache
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.AssemblyInfo.cs
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.RazorTargetAssemblyInfo.cache
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\bin\Debug\netcoreapp2.1\SongBank.pdb
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.dll
+C:\Users\coece\Desktop\Msa\phase2\msa-phase2\api\SongBank\SongBank\obj\Debug\netcoreapp2.1\SongBank.pdb

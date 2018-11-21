@@ -26,12 +26,6 @@ body{
   left: 10px;
 }
 
-.shareButton{
-  position: fixed;
-  left: 39%;
-  top: 68%;
-}
-
 /* Selected Meme */
 .meme-wrapper {
   padding-top:20px;
@@ -99,6 +93,29 @@ body{
 .btn-add {
   position: absolute;
   right: 0px;
+}
+.playButton {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+.playButton:focus {
+  outline: none;
+}
+
+.play{
+  position: relative;
+  top: -15px;
+  height: 65px;
+  width: 65px
+}
+.shareButton{
+  position: relative;
+  top: -20px;
+  left: 0
 }
 
 /* Meme List */
