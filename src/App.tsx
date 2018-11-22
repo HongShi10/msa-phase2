@@ -7,6 +7,104 @@ import songBankLogo from './songbankLogo.png';
 
 import Facebook from './components/Facebook';
 import ChatBot from 'react-simple-chatbot';
+import { ThemeProvider } from 'styled-components';
+
+
+// all available props
+const theme = {
+  background: '#f5f8fb',
+  fontFamily: 'Helvetica Neue',
+  headerBgColor: '#EF6C00',
+  headerFontColor: '#fff',
+  headerFontSize: '15px',
+  botBubbleColor: '#EF6C00',
+  botFontColor: '#fff',
+  userBubbleColor: '#fff',
+  userFontColor: '#4a4a4a',
+};
+
+const steps = [
+	{
+		id: '1',
+		message: 'Welcome to Youtube Song Bank?',
+		trigger: '2'
+	},
+	{
+		id: '2',
+		message: 'What can I help you with?',
+		trigger: '3'
+	},
+	{
+		id: '3',
+		options: [
+		{ value: 1, label: 'Get Started', trigger: '9' },
+		{ value: 2, label: 'Author Information', trigger: '4' },
+		{ value: 3, label: 'Bug Report', trigger: '5' },
+		],
+	},
+	{
+		id: '4',
+		message: 'Author Name: Hong Shi, Contact Info: Coecere@gmail.com',
+		trigger: '6'
+	},
+	{
+		id: '5',
+		message: 'To report a bug please email Coecere@gmail.com',
+		trigger: '6'
+	},
+	{
+		id: '6',
+		message: 'Do you need help with anything else?',
+		trigger: '7'
+	},
+	{
+		id: '7',
+		options: [
+		{ value: 1, label: 'Yes', trigger: '2' },
+		{ value: 2, label: 'No', trigger: '8' },
+		],
+	},
+	{
+		id: '8',
+		message: 'Thank You',
+		end: true,
+	},
+	{
+		id: '9',
+		message: 'What do you want to get started with',
+		trigger: '10',
+	},
+	{
+		id: '10',
+		options: [
+		{ value: 1, label: 'Adding Songs', trigger: '11' },
+		{ value: 2, label: 'Editing and Deleting', trigger: '12' },
+		{ value: 3, label: 'Logging In', trigger: '14' },
+		{ value: 4, label: 'Facebook/Youtube Integration', trigger: '14' },
+
+		],
+	},
+	{
+		id: '11',
+		message: 'To edit or delete content you must be a authenticated by facebook as a admin of the website',
+		trigger: '6',
+	},
+	{
+		id: '12',
+		message: 'To Add a song press the button in the top right corner and fill out all the necessary fields including a valid youtube URL',
+		trigger: '6',
+	},
+	{
+		id: '13',
+		message: 'To login using facebook click the login button on the top left hand side',
+		trigger: '6',
+	},
+	{
+		id: '14',
+		message: 'To go to the youtube URL click the youtube icon on the bottom and to share to facebook click the facebook icon',
+		trigger: '6',
+	},
+];
 
 
 interface IState {
@@ -17,6 +115,7 @@ interface IState {
 	uploadFileList: any,
 	isLoggedIn: boolean
 }
+
 
 class App extends React.Component<{}, IState> {
 	constructor(props: any) {
@@ -58,18 +157,21 @@ class App extends React.Component<{}, IState> {
 					<img src={songBankLogo} height='100'/>&nbsp;  &nbsp;
 				</div>
 			</div>
+			<div className="songTitle"><b>{this.state.currentSong.title}</b>   
+				<span className="byText">  by  {this.state.currentSong.tags}</span></div>
 			<div className="container">
 				<div className="row">
 					<div className="col-7">
+					
 						<SongDetail currentSong={this.state.currentSong} authenticated={this.state.isLoggedIn} />
 					</div>
-					<div className="addButton">
+					<div className="col-5">
+						<SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
+						<div className="addButton">
 					<div className="btn btn-add" onClick={this.onOpenAdd}>Add Song</div>
 					</div>
-					<div className="col-5">
-					
-						<SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
 					</div>
+					
 				</div>
 			</div>
 			<Modal open={openAdd} onClose={this.onCloseAdd}>
@@ -98,23 +200,15 @@ class App extends React.Component<{}, IState> {
 			</Modal>
 				<div className="chatBot">
 				<Modal open={openBot} onClose={this.onCloseBot}>
-				<ChatBot
-					steps={[
-						{
-						id: 'hello-world',
-						message: 'Hello World!',
-						end: true,
-						},
-					]}
-					/>
-				</Modal>
-
+				<div>
+					<ThemeProvider theme={theme}>
+						<ChatBot botDelay = '900' steps={steps} />
+					</ThemeProvider>	
 					</div>
-				<div className="btn btn-add" onClick={this.onOpenBot}>ChatBot</div>
-				<div className="footer"> 
-				<b>{this.state.currentSong.title}</b>   
-				<span className="byText">  by  {this.state.currentSong.tags}</span>
-				 </div>
+				</Modal>
+				</div>
+				<div className="footer"><button className="btn chatBotButton" onClick={this.onOpenBot}>Help</button></div>
+	
 		</div>
 		);
 	}
@@ -145,6 +239,7 @@ class App extends React.Component<{}, IState> {
 			currentSong: newSong
 		})
 	}
+	
 
 	// GET memes
 	private fetchSongs(tags: any) {
@@ -210,6 +305,9 @@ class App extends React.Component<{}, IState> {
 			}
 		  })
 	}
+	
+	
 }
+
 
 export default App;

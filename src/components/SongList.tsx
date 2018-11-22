@@ -1,6 +1,26 @@
 import * as React from "react";
 import MediaStreamRecorder from 'msr';
 
+import TextField from '@material-ui/core/TextField';
+
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        light: '#ff6161',
+        main: '#ff6161',
+        dark: '#ff6161',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff6161',
+        main: '#ff6161',
+        dark: '#ff6161',
+        contrastText: '#000',
+      },
+    },
+  });
 
 interface IProps {
     songs: any[],
@@ -21,8 +41,12 @@ export default class SongList extends React.Component<IProps, {}> {
 			<div className="container song-list-wrapper">
                 <div className="row song-list-heading">
                     <div className="input-group">
-                        <input type="text" id="search-tag-textbox" className="form-control" placeholder="Search By Artist" />
-                        <div className="input-group-append">
+                    <div className="searchField">
+                    <MuiThemeProvider theme={theme}>
+                    <TextField id="search-tag-textbox" label="Search By Artist" type="text" className="form-control" margin="normal"/> 
+                    </MuiThemeProvider>
+                    </div>
+                            <div className="input-group-append">
                             <div className="btn btn-outline-secondary search-button" onClick = {this.searchByTag}>Search</div>
                             <div className="btn" onClick={this.searchTagByVoice}><i className="fa fa-microphone" /></div>
 
@@ -108,7 +132,7 @@ export default class SongList extends React.Component<IProps, {}> {
         for (let i = 0; i < songList.length; i++) {
             const children = []
             const song = songList[i]
-            children.push(<td key={"id" + i}>{song.id}</td>)
+            children.push(<td key={"id" + i}>{<img className="albumArt" src={song.url}/>}</td>)
             children.push(<td key={"name" + i}>{song.title}</td>)
             children.push(<td key={"tag" + i}>{song.tags}</td>)
             table.push(<tr key={i+""} id={i+""} onClick= {this.selectRow.bind(this, i)}>{children}</tr>)

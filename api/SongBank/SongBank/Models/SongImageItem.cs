@@ -10,6 +10,7 @@ namespace SongBank.Models
     {
         public string Title { get; set; }
         public string Tags { get; set; }
+        public IFormFile Image { get; set; }
         public string Youtube { get; set; }
     }
 }

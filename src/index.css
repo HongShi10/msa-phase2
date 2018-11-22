@@ -1,24 +1,22 @@
 body{
-  background-color:#CDCDCD;
+  background-color:#E5E5E5
+  ;
   font-family: Helvetica;
 }
 
 /* Header */
 .header-wrapper {
-  background-color: #b31217;
-  border-bottom: 1px solid #b31217;
+  background-color: #ff4e4e
+  ;
+  border-bottom: 1px solid #ff4e4e
+  ;
   width: 100%;
   height: 100px;
 }
-.footer {
+.songTitle {
+  top:18%;
+  left:19%;
   position: fixed;
-  background-color: #b31217;
-  left: 0px;
-  right: 0px;
-  bottom: 0;
-  border-bottom: 1px solid #b31217;
-  width: 100%;
-  height: 100px;
   text-align: center;
   display:inline-block;
   vertical-align: middle;
@@ -61,7 +59,7 @@ body{
 }
 
 .song-img {
-  margin-top: 100px;
+  margin-top: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,8 +94,8 @@ body{
 
 .btn{
   font-family: Helvetica;
-  background-color:#b31217;
-  border-color: #b31217;
+  background-color:#ff4e4e;
+  border-color: #ff4e4e;
   height:40px;
   margin-right: 10px;
   font-size:18px;
@@ -106,18 +104,15 @@ body{
   padding-right: 20px;
   color: #eeeeee
 }
-.btn-action:active{
-  border-color: #b31217;
-  background-color:#b31217;
-}
 .btn:active{
-  background-color: #7e0d10;
-  border-color: #7e0d10;
+  background-color: #ff1313;
+  border-color: #ff1313;
 }
 
-.btn-action:hover {
-  background-color: #7e0d10;
-  border-color: #7e0d10;
+.btn:hover {
+  background-color: #ff2727;
+  border-color: #ff2727;
+  color: #000000
 }
 
 .btn-add {
@@ -150,23 +145,27 @@ body{
 
 .addButton{
   position: relative;
-  margin-top: 40px;
-  left: 27%;
+  margin-top: 10px;
+  left: -33%;
 }
 
 .song-list-table {
-  margin-top: 10px;
+  margin-top: -20px;
   height: 360px;
   overflow: scroll;
   cursor: pointer;
 }
 .search-button:hover {
-  background-color: #b31217;
-  border-color: #b31217;
-  color: white;
+  background-color: #ff2727;
+  border-color: #ff2727;
+  color: #000000
+}
+.search-button:active{
+  background-color: #ff1313;
+  border-color: #ff1313;
 }
 .col-5{
-  margin-top: 120px
+  margin-top: 170px
 }
 .byText{
   font-size: 30px;
@@ -176,9 +175,32 @@ body{
   position: relative;
   left:-70%;
 }
-.chatBot{
-  background: transparent;
-  background-color: transparent
+.chatBotButton{
+  left: 10%px;
+  background-color:#ff4e4e;
+  border-color: #ff4e4e;;
 }
 
+.chatBotButton:hover{
+  background-color:#ff2727;
+  border-color: #ff2727;
+}
+.albumArt{
+  max-width:70px;
+  max-height:70px;
+}
+.footer{
+  position: relative;
+  margin-left: 94%;
+  margin-top: 8%;
+}
+.form-control{
+  background-color: #E5E5E5;
+}
+.searchField{
+  position: relative;
+  width: 250px;
+  top: -25px;
+  padding-right: 20px;
+}
 
