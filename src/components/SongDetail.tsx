@@ -58,10 +58,10 @@ export default class SongDetail extends React.Component<IProps, IState> {
                     <button className="btn  " onClick={this.deleteSong.bind(this, currentSong.id)} > Delete </button>
                     :""}
                      {(!authenticated)?
-                    <button className="btn  "  onClick={this.onOpenModal} disabled={true} >Edit </button>
+                    <button className="btn btn-disabled "  onClick={this.onOpenModal} disabled={true} >Edit </button>
                     :""}
                     {(!authenticated)?
-                    <button className="btn  " onClick={this.deleteSong.bind(this, currentSong.id)} disabled={true}> Delete </button>
+                    <button className="btn btn-disabled " onClick={this.deleteSong.bind(this, currentSong.id)} disabled={true}> Delete </button>
                     :""}
 
                     <button className="playButton"><img className="play" src={youtubeButton} onClick={this.playSong.bind(this, currentSong.youtube)} /></button>

@@ -63,9 +63,8 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eeeeee;
   overflow: hidden;
-  background-color: #CDCDCD
+  background-color: #E5E5E5
 }
 
 .song-img img {
@@ -114,7 +113,10 @@ body{
   border-color: #ff2727;
   color: #000000
 }
-
+.btn-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
 .btn-add {
   position: absolute;
   right: 0px;
@@ -145,12 +147,12 @@ body{
 
 .addButton{
   position: relative;
-  margin-top: 10px;
+  margin-top: 20px;
   left: -33%;
 }
 
 .song-list-table {
-  margin-top: -20px;
+  margin-top: -40px;
   height: 360px;
   overflow: auto;
   cursor: pointer;
@@ -165,7 +167,7 @@ body{
   border-color: #ff1313;
 }
 .col-5{
-  margin-top: 170px
+  margin-top: 180px
 }
 .byText{
   font-size: 30px;
@@ -200,7 +202,13 @@ body{
 .searchField{
   position: relative;
   width: 250px;
-  top: -25px;
+  top: -40px;
   padding-right: 20px;
+}
+.input-group-append{
+  position: relative;
+  top: -25px;
+  padding-left: 22px;
+
 }
 

@@ -12,12 +12,12 @@ import { ThemeProvider } from 'styled-components';
 
 // all available props
 const theme = {
-  background: '#f5f8fb',
+  background: '#E5E5E5',
   fontFamily: 'Helvetica Neue',
-  headerBgColor: '#EF6C00',
+  headerBgColor: '#ff4e4e',
   headerFontColor: '#fff',
   headerFontSize: '15px',
-  botBubbleColor: '#EF6C00',
+  botBubbleColor: '#ff4e4e',
   botFontColor: '#fff',
   userBubbleColor: '#fff',
   userFontColor: '#4a4a4a',
@@ -26,8 +26,14 @@ const theme = {
 const steps = [
 	{
 		id: '1',
-		message: 'Welcome to Youtube Song Bank?',
-		trigger: '2'
+		message: 'Welcome to Youtube Song Bank',
+		trigger: '15'
+	},
+	{
+		id: '15',
+		component: (
+			<img src={songBankLogo}/>
+		  ),		trigger: '2'
 	},
 	{
 		id: '2',
@@ -77,10 +83,10 @@ const steps = [
 	{
 		id: '10',
 		options: [
-		{ value: 1, label: 'Adding Songs', trigger: '11' },
-		{ value: 2, label: 'Editing and Deleting', trigger: '12' },
-		{ value: 3, label: 'Logging In', trigger: '14' },
-		{ value: 4, label: 'Facebook/Youtube Integration', trigger: '14' },
+		{ value: 1, label: 'Adding Songs', trigger: '12' },
+		{ value: 2, label: 'Editing and Deleting', trigger: '11' },
+		{ value: 3, label: 'Logging In', trigger: '15' },
+		{ value: 4, label: 'Facebook/Youtube Integration', trigger: '13' },
 
 		],
 	},
@@ -91,12 +97,12 @@ const steps = [
 	},
 	{
 		id: '12',
-		message: 'To Add a song press the button in the top right corner and fill out all the necessary fields including a valid youtube URL',
+		message: 'To Add a song press, the button in the top right corner and fill out all the necessary fields including a valid youtube URL and album art',
 		trigger: '6',
 	},
 	{
 		id: '13',
-		message: 'To login using facebook click the login button on the top left hand side',
+		message: 'To login using facebook click the login button on the top left hand side or just log into facebook from the facebook website',
 		trigger: '6',
 	},
 	{
@@ -104,6 +110,7 @@ const steps = [
 		message: 'To go to the youtube URL click the youtube icon on the bottom and to share to facebook click the facebook icon',
 		trigger: '6',
 	},
+
 ];
 
 
@@ -161,13 +168,12 @@ class App extends React.Component<{}, IState> {
 				<span className="byText">  by  {this.state.currentSong.tags}</span></div>
 			<div className="container">
 				<div className="row">
-					<div className="col-7">
-					
+					<div className="col-7 ">
 						<SongDetail currentSong={this.state.currentSong} authenticated={this.state.isLoggedIn} />
 					</div>
-					<div className="col-5">
+					<div className="col-5 split right">
 						<SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
-						<div className="addButton">
+					<div className="addButton">
 					<div className="btn btn-add" onClick={this.onOpenAdd}>Add Song</div>
 					</div>
 					</div>
@@ -202,23 +208,24 @@ class App extends React.Component<{}, IState> {
 				<Modal open={openBot} onClose={this.onCloseBot}>
 				<div>
 					<ThemeProvider theme={theme}>
-						<ChatBot botDelay = '900' steps={steps} />
+						<ChatBot   speechSynthesis={{ enable: true, lang: 'en' }}
+ 							botDelay = '2000' steps={steps} />
 					</ThemeProvider>	
 					</div>
 				</Modal>
 				</div>
-				<div className="footer"><button className="btn chatBotButton" onClick={this.onOpenBot}>Help</button></div>
-	
+				<div className="footer right split"><button className="btn chatBotButton" onClick={this.onOpenBot}>Help</button></div>
+
 		</div>
 		);
 	}
 
-	// Modal open
+	// Opens botModal
 	private onOpenBot = () => {
 		this.setState({ openBot: true });
 	  };
 	
-	// Modal close
+	// closes botModal
 	private onCloseBot = () => {
 		this.setState({ openBot: false });
 	};
@@ -233,7 +240,7 @@ class App extends React.Component<{}, IState> {
 		this.setState({ openAdd: false });
 	};
 	
-	// Change selected meme
+	// Change selected song
 	private selectnewSong(newSong: any) {
 		this.setState({
 			currentSong: newSong
@@ -241,7 +248,7 @@ class App extends React.Component<{}, IState> {
 	}
 	
 
-	// GET memes
+	// GET Songs
 	private fetchSongs(tags: any) {
 		let url = "https://msaphase2webapp.azurewebsites.net/api/SongItems"
 		if (tags !== "") {
@@ -272,8 +279,13 @@ class App extends React.Component<{}, IState> {
 		const titleInput = document.getElementById("song-title-input") as HTMLInputElement
 		const tagInput = document.getElementById("song-tag-input") as HTMLInputElement
 		const youtubeInput = document.getElementById("youtube-tag-input") as HTMLInputElement
-
-		const imageFile = this.state.uploadFileList[0]
+		let imageFile;
+		if(this.state.uploadFileList === null){
+			 imageFile = "./songbankLogo.png"
+		}
+		else{
+			 imageFile = this.state.uploadFileList[0]
+		}
 
 		if (titleInput === null || tagInput === null || imageFile === null || youtubeInput === null) {
 			return;
