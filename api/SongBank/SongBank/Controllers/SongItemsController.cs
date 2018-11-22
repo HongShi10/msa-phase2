@@ -183,6 +183,10 @@ namespace SongBank.Controllers
                     songItem.Title = song.Title;
                     songItem.Tags = song.Tags;
 
+                    System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
+                    songItem.Height = image.Height.ToString();
+                    songItem.Width = image.Width.ToString();
+                    songItem.Url = cloudBlock.SnapshotQualifiedUri.AbsoluteUri;
                     songItem.Uploaded = DateTime.Now.ToString();
                     songItem.Youtube = song.Youtube;
 

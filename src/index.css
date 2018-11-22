@@ -152,7 +152,7 @@ body{
 .song-list-table {
   margin-top: -20px;
   height: 360px;
-  overflow: scroll;
+  overflow: auto;
   cursor: pointer;
 }
 .search-button:hover {
