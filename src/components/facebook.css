@@ -1,13 +1,17 @@
 .btnFacebook { 
-  width: 170px;
-  height:38px;  
+  width: 100px;
+  height: 45px;  
   border-radius: 4px;
   background: #3b5998;
   color:white;
   border:0px transparent;  
   text-align: center;
   margin:5px;
-  display: inline-block;
+  position: relative;
+  left: 25px;
+  font-size: 13px;
+  
+  
 }
 
 .btnFacebook:hover {

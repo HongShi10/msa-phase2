@@ -1,35 +1,45 @@
 import * as React from 'react';
 import Modal from 'react-responsive-modal';
 import './App.css';
-import MemeDetail from './components/MemeDetail';
-import MemeList from './components/MemeList';
-import PatrickLogo from './patrick-logo.png';
+import SongDetail from './components/SongDetail';
+import SongList from './components/SongList';
+import songBankLogo from './songbankLogo.png';
 
 import Facebook from './components/Facebook';
 
 interface IState {
-	currentMeme: any,
-	memes: any[],
+	currentSong: any,
+	songs: any[],
 	open: boolean,
 	uploadFileList: any,
+	isLoggedIn: boolean
 }
 
 class App extends React.Component<{}, IState> {
 	constructor(props: any) {
         super(props)
         this.state = {
-			currentMeme: {"id":0, "title":"Loading ","url":"","genre":"⚆ _ ⚆","youtube":"","width":"0","height":"0"},
-			memes: [],
+			currentSong: {"id":0, "title":"Loading ","url":"","tags":"","youtube":"","width":"0","height":"0"},
+			songs: [],
 			open: false,
-			uploadFileList: null
+			uploadFileList: null,
+			isLoggedIn: false,
 		}     
 		
-		this.fetchMemes("")
-		this.selectNewMeme = this.selectNewMeme.bind(this)
+		this.fetchSongs("")
+		this.selectnewSong = this.selectnewSong.bind(this)
 		this.handleFileUpload = this.handleFileUpload.bind(this)
-		this.fetchMemes = this.fetchMemes.bind(this)
-		this.uploadMeme = this.uploadMeme.bind(this)
+		this.fetchSongs = this.fetchSongs.bind(this)
+		this.uploadSong = this.uploadSong.bind(this)
 		
+	}
+	public facebookAuthenticator = (response: any) =>{
+		console.log(response.userID)
+		if(response.userID === "2820542861305358"){
+		this.setState({
+			isLoggedIn: true
+		})
+	}
 	}
 
 	public render() {
@@ -38,20 +48,21 @@ class App extends React.Component<{}, IState> {
 		<div>
 			<div className="header-wrapper">
 				<div className="container header">
-				<div className="facebook-component"><Facebook/></div>
-					<img src={PatrickLogo} height='40'/>&nbsp; Song Bank &nbsp;
-					<div className="btn btn-primary btn-action btn-add" onClick={this.onOpenModal}>Add Song</div>
+				<span className="facebookLogin"><Facebook callback={this.facebookAuthenticator}/></span>
+					<img src={songBankLogo} height='100'/>&nbsp;  &nbsp;
 				</div>
 			</div>
 			<div className="container">
 				<div className="row">
 					<div className="col-7">
-						<MemeDetail currentMeme={this.state.currentMeme} />
-						
-					
+						<SongDetail currentSong={this.state.currentSong} authenticated={this.state.isLoggedIn} />
+					</div>
+					<div className="addButton">
+					<div className="btn btn-add" onClick={this.onOpenModal}>Add Song</div>
 					</div>
 					<div className="col-5">
-						<MemeList memes={this.state.memes} selectNewMeme={this.selectNewMeme} searchByTag={this.fetchMemes}/>
+					
+						<SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
 					</div>
 				</div>
 			</div>
@@ -59,16 +70,16 @@ class App extends React.Component<{}, IState> {
 				<form>
 					<div className="form-group">
 						<label>Song Title</label>
-						<input type="text" className="form-control" id="meme-title-input" placeholder="Enter Song Title" />
+						<input type="text" className="form-control" id="song-title-input" placeholder="Enter Song Title" />
 					</div>
 					<div className="form-group">
 						<label>Artist</label>
-						<input type="text" className="form-control" id="meme-tag-input" placeholder="Enter Artist" />
+						<input type="text" className="form-control" id="song-tag-input" placeholder="Enter Artist" />
 						<small className="form-text text-muted">Artist is used in search</small>
 					</div>
 					<div className="form-group">
 						<label>Album Art</label>
-						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="meme-image-input" />
+						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="song-image-input" />
 						<small className="form-text text-muted">Add an album/song art</small>
 					</div>
 					<div className="form-group">
@@ -76,9 +87,11 @@ class App extends React.Component<{}, IState> {
                             <input type="text" className="form-control" id="youtube-tag-input" placeholder="Enter Youtube Link"/>
                         </div>
 
-					<button type="button" className="btn" onClick={this.uploadMeme}>Upload</button>
+					<button type="button" className="btn" onClick={this.uploadSong}>Upload</button>
 				</form>
 			</Modal>
+
+				<div className="footer"> <b>{this.state.currentSong.title}</b>   <span className="byText">  by  {this.state.currentSong.tags}</span> </div>
 		</div>
 		);
 	}
@@ -94,30 +107,27 @@ class App extends React.Component<{}, IState> {
 	};
 	
 	// Change selected meme
-	private selectNewMeme(newMeme: any) {
+	private selectnewSong(newSong: any) {
 		this.setState({
-			currentMeme: newMeme
+			currentSong: newSong
 		})
 	}
 
 	// GET memes
-	private fetchMemes(genre: any) {
-		let url = "https://songapiphase2.azurewebsites.net/api/SongItems"
-		if (genre !== "") {
-			url += "/Genre?=" + genre
+	private fetchSongs(tags: any) {
+		let url = "https://msaphase2webapp.azurewebsites.net/api/SongItems"
+		if (tags !== "") {
+			url += "/tag?=" + tags
 		}
         fetch(url, {
             method: 'GET'
         })
         .then(res => res.json())
         .then(json => {
-			let currentMeme = json[0]
-			if (currentMeme === undefined) {
-				currentMeme = {"id":0, "title":"No memes (╯°□°）╯︵ ┻━┻","url":"","genre":"try a different tag","youtube":"","width":"0","height":"0"}
-			}
+			const currentSong = {"id":0, "title":"No Song Selected","url":"","tags":"Unknown","youtube":"","width":"0","height":"0"}
 			this.setState({
-				currentMeme,
-				memes: json
+				currentSong,
+				songs: json
 			})
         });
 	}
@@ -130,9 +140,9 @@ class App extends React.Component<{}, IState> {
 	}
 
 	// POST meme
-	private uploadMeme() {
-		const titleInput = document.getElementById("meme-title-input") as HTMLInputElement
-		const tagInput = document.getElementById("meme-tag-input") as HTMLInputElement
+	private uploadSong() {
+		const titleInput = document.getElementById("song-title-input") as HTMLInputElement
+		const tagInput = document.getElementById("song-tag-input") as HTMLInputElement
 		const youtubeInput = document.getElementById("youtube-tag-input") as HTMLInputElement
 
 		const imageFile = this.state.uploadFileList[0]
@@ -144,11 +154,12 @@ class App extends React.Component<{}, IState> {
 		const title = titleInput.value
 		const tag = tagInput.value
 		const youtube = youtubeInput.value
-		const url = "https://songapiphase2.azurewebsites.net/api/SongItems/upload"
+		
+		const url = "https://msaphase2webapp.azurewebsites.net/api/SongItems/upload"
 
 		const formData = new FormData()
 		formData.append("Title", title)
-		formData.append("Artist", tag)
+		formData.append("tags", tag)
 		formData.append("image", imageFile)
 		formData.append("youtube", youtube)
 

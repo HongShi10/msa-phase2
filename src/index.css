@@ -1,14 +1,31 @@
 body{
-  background-color:#ffffff;
+  background-color:#CDCDCD;
   font-family: Helvetica;
 }
 
 /* Header */
 .header-wrapper {
-  background-color: #fafafa;
-  border-bottom: 1px solid #eeeeee;
+  background-color: #b31217;
+  border-bottom: 1px solid #b31217;
   width: 100%;
-  height: 60px;
+  height: 100px;
+}
+.footer {
+  position: fixed;
+  background-color: #b31217;
+  left: 0px;
+  right: 0px;
+  bottom: 0;
+  border-bottom: 1px solid #b31217;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  display:inline-block;
+  vertical-align: middle;
+  line-height: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+
 }
 
 .header {
@@ -19,21 +36,23 @@ body{
   font-weight: bold;
   position: relative;
   padding-top: 10px;
+  height: 90px;
 }
 
 .facebook-component{
-  position: fixed;
-  left: 10px;
+  position: relative;
+  left: -770px;
+  top: -7px;
 }
 
-/* Selected Meme */
-.meme-wrapper {
+/* Selected song */
+.song-wrapper {
   padding-top:20px;
   padding-left: 30px;
   padding-right: 30px;
 }
 
-.meme-heading {
+.song-heading {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -41,21 +60,23 @@ body{
   font-size: 18px;
 }
 
-.meme-img {
-  margin-top: 10px;
+.song-img {
+  margin-top: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #eeeeee;
   overflow: hidden;
+  background-color: #CDCDCD
 }
 
-.meme-img img {
+.song-img img {
   max-height: calc(100vh - 220px);
   width: 100%;
+  height: 100%;
 }
 
-.meme-date {
+.song-date {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -64,7 +85,7 @@ body{
   margin-top: 0px;
 }
 
-.meme-done-button {
+.song-done-button {
   display: flex;
   align-items: left;
   justify-content: left;
@@ -73,21 +94,30 @@ body{
   margin-top: 20px;
 }
 
-.btn-action{
+.btn{
   font-family: Helvetica;
-  background-color:#f5a623;
-  border-color: #f5a623;
+  background-color:#b31217;
+  border-color: #b31217;
   height:40px;
   margin-right: 10px;
   font-size:18px;
   border-radius: 8px;
   padding-left: 20px;
   padding-right: 20px;
+  color: #eeeeee
+}
+.btn-action:active{
+  border-color: #b31217;
+  background-color:#b31217;
+}
+.btn:active{
+  background-color: #7e0d10;
+  border-color: #7e0d10;
 }
 
 .btn-action:hover {
-  background-color: #d18c1b;
-  border-color: #d18c1b;
+  background-color: #7e0d10;
+  border-color: #7e0d10;
 }
 
 .btn-add {
@@ -118,24 +148,33 @@ body{
   left: 0
 }
 
-/* Meme List */
-.meme-list-wrapper {
-  padding-top:20px;
+.addButton{
+  position: relative;
+  margin-top: 40px;
+  left: 27%;
 }
 
-.meme-list-table {
-  margin-top: 20px;
-  height: calc(100vh - 140px);
-  overflow-y: scroll;
+.song-list-table {
+  margin-top: 10px;
+  height: 360px;
+  overflow: scroll;
   cursor: pointer;
 }
-
 .search-button:hover {
-  background-color: #d18c1b;
-  border-color: #d18c1b;
+  background-color: #b31217;
+  border-color: #b31217;
   color: white;
 }
+.col-5{
+  margin-top: 120px
+}
+.byText{
+  font-size: 30px;
+}
 
-
+.facebookLogin{
+  position: relative;
+  left:-70%;
+}
 
 

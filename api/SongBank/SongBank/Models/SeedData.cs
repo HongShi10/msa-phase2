@@ -23,13 +23,11 @@ namespace SongBank.Models
                 context.SongItem.AddRange(
                     new SongItem
                     {
-                        Title = "Is Mayo an Instrument?",
-                        Url = "https://i.kym-cdn.com/photos/images/original/001/371/723/be6.jpg",
-                        Youtube = "www.youtube.com",
-                        Tags = "spongebob",
+                        Title = "The Climb",
+                        Youtube = "https://www.youtube.com/watch?v=NG2zyeVRcbs",
+                        Tags = "Miley Cyrus",
                         Uploaded = "07-10-18 4:20T18:25:43.511Z",
-                        Width = "768",
-                        Height = "432"
+
                     }
 
 
