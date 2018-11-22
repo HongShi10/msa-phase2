@@ -176,5 +176,9 @@ body{
   position: relative;
   left:-70%;
 }
+.chatBot{
+  background: transparent;
+  background-color: transparent
+}
 
 

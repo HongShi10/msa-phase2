@@ -62,7 +62,7 @@ export default class SongList extends React.Component<IProps, {}> {
 
     public postAudio(blob :any){
         let accessToken: any;
-        fetch('https://westus.api.cognitive.microsoft.com/sts/v1.0', {
+        fetch('https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US', {
             headers: {
                 'Content-Length': '0',
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -78,7 +78,7 @@ export default class SongList extends React.Component<IProps, {}> {
         }).catch((error) => {
             console.log("Error", error)
         });
-        fetch('https://westus.api.cognitive.microsoft.com/sts/v1.0', {
+        fetch('https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US', {
             body: blob, // this is a .wav audio file    
             headers: {
                 'Accept': 'application/json',
@@ -91,6 +91,8 @@ export default class SongList extends React.Component<IProps, {}> {
             return res.json()
         }).then((res: any) => {
             console.log(res)
+            const textBox = document.getElementById("search-tag-textbox") as HTMLInputElement
+            textBox.value = (res.DisplayText as string).slice(0, -1)
         }).catch((error) => {
             console.log("Error", error)
         });

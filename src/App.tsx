@@ -6,11 +6,14 @@ import SongList from './components/SongList';
 import songBankLogo from './songbankLogo.png';
 
 import Facebook from './components/Facebook';
+import ChatBot from 'react-simple-chatbot';
+
 
 interface IState {
 	currentSong: any,
 	songs: any[],
-	open: boolean,
+	openAdd: boolean,
+	openBot: boolean,
 	uploadFileList: any,
 	isLoggedIn: boolean
 }
@@ -21,7 +24,8 @@ class App extends React.Component<{}, IState> {
         this.state = {
 			currentSong: {"id":0, "title":"Loading ","url":"","tags":"","youtube":"","width":"0","height":"0"},
 			songs: [],
-			open: false,
+			openAdd: false,
+			openBot: false,
 			uploadFileList: null,
 			isLoggedIn: false,
 		}     
@@ -43,7 +47,9 @@ class App extends React.Component<{}, IState> {
 	}
 
 	public render() {
-		const { open } = this.state;
+		const { openAdd } = this.state;
+		const { openBot } = this.state;
+
 		return (
 		<div>
 			<div className="header-wrapper">
@@ -58,7 +64,7 @@ class App extends React.Component<{}, IState> {
 						<SongDetail currentSong={this.state.currentSong} authenticated={this.state.isLoggedIn} />
 					</div>
 					<div className="addButton">
-					<div className="btn btn-add" onClick={this.onOpenModal}>Add Song</div>
+					<div className="btn btn-add" onClick={this.onOpenAdd}>Add Song</div>
 					</div>
 					<div className="col-5">
 					
@@ -66,7 +72,7 @@ class App extends React.Component<{}, IState> {
 					</div>
 				</div>
 			</div>
-			<Modal open={open} onClose={this.onCloseModal}>
+			<Modal open={openAdd} onClose={this.onCloseAdd}>
 				<form>
 					<div className="form-group">
 						<label>Song Title</label>
@@ -90,20 +96,47 @@ class App extends React.Component<{}, IState> {
 					<button type="button" className="btn" onClick={this.uploadSong}>Upload</button>
 				</form>
 			</Modal>
+				<div className="chatBot">
+				<Modal open={openBot} onClose={this.onCloseBot}>
+				<ChatBot
+					steps={[
+						{
+						id: 'hello-world',
+						message: 'Hello World!',
+						end: true,
+						},
+					]}
+					/>
+				</Modal>
 
-				<div className="footer"> <b>{this.state.currentSong.title}</b>   <span className="byText">  by  {this.state.currentSong.tags}</span> </div>
+					</div>
+				<div className="btn btn-add" onClick={this.onOpenBot}>ChatBot</div>
+				<div className="footer"> 
+				<b>{this.state.currentSong.title}</b>   
+				<span className="byText">  by  {this.state.currentSong.tags}</span>
+				 </div>
 		</div>
 		);
 	}
 
 	// Modal open
-	private onOpenModal = () => {
-		this.setState({ open: true });
+	private onOpenBot = () => {
+		this.setState({ openBot: true });
 	  };
 	
 	// Modal close
-	private onCloseModal = () => {
-		this.setState({ open: false });
+	private onCloseBot = () => {
+		this.setState({ openBot: false });
+	};
+
+	// Modal open
+	private onOpenAdd = () => {
+		this.setState({ openAdd: true });
+	  };
+	
+	// Modal close
+	private onCloseAdd = () => {
+		this.setState({ openAdd: false });
 	};
 	
 	// Change selected meme
