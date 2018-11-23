@@ -36,6 +36,10 @@ body{
   padding-top: 10px;
   height: 90px;
 }
+.logo{
+  left:-70px;
+  position: relative;
+}
 
 .facebook-component{
   position: relative;
@@ -206,6 +210,10 @@ body{
 .form-control{
   background-color: #E5E5E5;
 }
+.form-control-Modal{
+  background-color: #eeeeee;
+}
+
 .searchField{
   position: relative;
   top:-10px;
@@ -235,6 +243,7 @@ body{
 }
 .card {
     display: inline-block;
+    margin-right: 15px;
 }
 .chatButton{
   position: relative;
@@ -248,4 +257,14 @@ body{
   width: 1720px;
 }
 
+.youtubeWelcome{
+  position: relative;
+  left:75px;
+}
+.songTitleCard{
+  overflow-wrap: break-word;
+}
+.cardContent{
+word-wrap: break-word
+}
 

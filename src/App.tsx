@@ -8,6 +8,7 @@ import songBankLogo from './songbankLogo.png';
 import Facebook from './components/Facebook';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
+import { TextField, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 
 // all available props
@@ -28,14 +29,15 @@ const theme = {
 const steps = [
 	{
 		id: '1',
-		message: 'Welcome to Youtube Song Bank',
+		component: (
+			<img src={songBankLogo}/>
+		  ),
 		trigger: '15'
 	},
 	{
 		id: '15',
-		component: (
-			<img src={songBankLogo}/>
-		  ),		trigger: '2'
+		message: 'Welcome to Youtube SongBank',
+				trigger: '2'
 	},
 	{
 		id: '2',
@@ -115,12 +117,27 @@ const steps = [
 
 ];
 
+const muiTheme = createMuiTheme({
+    palette: {
+      primary: {
+        light: '#ff6161',
+        main: '#ff6161',
+        dark: '#ff6161',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff6161',
+        main: '#ff6161',
+        dark: '#ff6161',
+        contrastText: '#000',
+      },
+    },
+  });
 
 interface IState {
 	currentSong: any,
 	songs: any[],
 	openAdd: boolean,
-	openBot: boolean,
 	uploadFileList: any,
 	isLoggedIn: boolean
 }
@@ -133,7 +150,6 @@ class App extends React.Component<{}, IState> {
 			currentSong: {"id":0, "title":"Loading ","url":"","tags":"","youtube":"","width":"0","height":"0"},
 			songs: [],
 			openAdd: false,
-			openBot: false,
 			uploadFileList: null,
 			isLoggedIn: false,
 		}     
@@ -157,7 +173,6 @@ class App extends React.Component<{}, IState> {
 
 	public render() {
 		const { openAdd } = this.state;
-		const { openBot } = this.state;
 
 		return (
 		<div className="page-wrap">
@@ -165,7 +180,7 @@ class App extends React.Component<{}, IState> {
 				<div className="container header">
 				<span className="facebookLogin"><Facebook callback={this.facebookAuthenticator}/></span>
 				
-					<img src={songBankLogo} height='100'/>&nbsp;  &nbsp;
+					<img className="logo" src={songBankLogo} height='100'/>&nbsp;  &nbsp;
 				</div>
 			</div>
 			
@@ -185,56 +200,43 @@ class App extends React.Component<{}, IState> {
 			</div>
 			<Modal open={openAdd} onClose={this.onCloseAdd}>
 				<form>
+				<MuiThemeProvider theme={muiTheme}>
+
 					<div className="form-group">
 						<label>Song Title</label>
-						<input type="text" className="form-control" id="song-title-input" placeholder="Enter Song Title" />
+						<TextField type="text" className="form-control form-control-Modal" id="song-title-input" placeholder="Enter Song Title" />
 					</div>
 					<div className="form-group">
 						<label>Artist</label>
-						<input type="text" className="form-control" id="song-tag-input" placeholder="Enter Artist" />
+						<TextField type="text" className="form-control form-control-Modal" id="song-tag-input" placeholder="Enter Artist" />
 						<small className="form-text text-muted">Artist is used in search</small>
 					</div>
 					<div className="form-group">
 						<label>Album Art</label>
-						<input type="file" onChange={this.handleFileUpload} className="form-control-file" id="song-image-input" />
+						<input type="file" onChange={this.handleFileUpload} className="form-control-file " id="song-image-input" />
 						<small className="form-text text-muted">Add an album/song art</small>
 					</div>
 					<div className="form-group">
                             <label>Youtube Link</label>
-                            <input type="text" className="form-control" id="youtube-tag-input" placeholder="Enter Youtube Link"/>
+                            <TextField type="text" className="form-control form-control-Modal" id="youtube-tag-input" placeholder="Enter Youtube Link"/>
+							<small className="form-text text-muted">Add valid Youtube URL</small>
                         </div>
-
 					<button type="button" className="btn" onClick={this.uploadSong}>Upload</button>
+					</MuiThemeProvider>
 				</form>
 			</Modal>
 				<div className="chatBot">
-				<Modal open={openBot} onClose={this.onCloseBot}>
-				<div>
 					<ThemeProvider theme={theme}>
-						<ChatBot   speechSynthesis={{ enable: true, lang: 'en' }}
+						<ChatBot  headerTitle="Youtube SongBank HelpBot" floating={true}
  							botDelay = '2000' steps={steps} />
 					</ThemeProvider>	
 					</div>
-				</Modal>
-				</div>
 				<div className="songListFooter">
 				<SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
-				<div className="chatButton"><button className="btn chatBotButton" onClick={this.onOpenBot}>Help</button></div>
-
 				</div>
 			</div>
 		);
 	}
-
-	// Opens botModal
-	private onOpenBot = () => {
-		this.setState({ openBot: true });
-	  };
-	
-	// closes botModal
-	private onCloseBot = () => {
-		this.setState({ openBot: false });
-	};
 
 	// Modal open
 	private onOpenAdd = () => {

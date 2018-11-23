@@ -28,6 +28,7 @@ export default class Facebook extends React.Component<IProps,IState> {
 
   public componentClicked = () => console.log("clicked");
 
+  // Gets the response of the the facebook login and changes states
   public responseFacebook = (response: any) => {
     this.setState({
         isLoggedIn: true,
@@ -45,8 +46,8 @@ export default class Facebook extends React.Component<IProps,IState> {
     let fbContent;    
     if (this.state.isLoggedIn) {
       fbContent = (
-        <div >
-          <img src={this.state.picture} alt={this.state.name} />
+        <div className="youtubeWelcome">
+          <img src={this.state.picture} alt={this.state.name}/> Welcome {this.state.name}
         </div>
       );
     } else {

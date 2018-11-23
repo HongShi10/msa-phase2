@@ -67,9 +67,9 @@ export default class SongList extends React.Component<IProps, {}> {
                 </div>
                 <div className="row song-list-table">
                     <div className="table table-striped">
-                        <div className="scrolling-wrapper">
-                            {this.createTable()}
-                        </div>
+                        <table className="scrolling-wrapper">
+                            {this.createCardList()}
+                        </table>
                     </div>
                 </div>
             </div>
@@ -136,15 +136,8 @@ export default class SongList extends React.Component<IProps, {}> {
 
     
     // Construct table using song list
-	private createTable() {
+	private createCardList() {
 
-        const cardStyle = {
-            transitionDuration: '0.3s',
-            height:"140",
-            maxWidth: '100%'
-
-        }
-    
         // const table:any[] = []
         const cardList: any[] = []
         const songList = this.props.songs
@@ -154,11 +147,11 @@ export default class SongList extends React.Component<IProps, {}> {
 
         Object.keys(songList).forEach((cardIndex)=> {
             cardList.push (
-                <Card className = "card" style={cardStyle}>
+                <Card className = "card">
                 <CardActionArea onClick={this.selectRow.bind(this,cardIndex)}>
                   <CardMedia>{<img className="albumArt" src={songList[cardIndex].url}/>}</CardMedia>
                   <CardContent>
-                    <Typography gutterBottom={true} variant="h5">
+                    <Typography gutterBottom={true} variant="h5" component="h2">
                       {songList[cardIndex].title}
                     </Typography>
                     <Typography component="p">
