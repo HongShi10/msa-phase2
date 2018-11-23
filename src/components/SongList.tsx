@@ -75,6 +75,7 @@ export default class SongList extends React.Component<IProps, {}> {
             </div>
 		);
     }
+    // Allows Search by using mic input
     public searchTagByVoice(){
         const mediaConstraints = {
             audio: true
