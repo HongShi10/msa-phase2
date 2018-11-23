@@ -53,11 +53,11 @@ export default class SongList extends React.Component<IProps, {}> {
 			<div className="container song-list-wrapper">
                 <div className="row song-list-heading">
                     <div className="input-group">
-                        <div className="searchField">
-                            <MuiThemeProvider theme={theme}>
-                                <TextField id="search-tag-textbox" label="Search By Artist" type="text" className="form-control" margin="normal"/> 
-                            </MuiThemeProvider>
-                        </div>
+                    <div className="searchField">
+                        <MuiThemeProvider theme={theme}>
+                        <TextField id="search-tag-textbox" placeholder="Search By Artist" type="text" className="form-control" margin="normal"/> 
+                        </MuiThemeProvider>
+                    </div>
                             <div className="input-group-append">
                             <div className="btn btn-outline-secondary search-button" onClick = {this.searchByTag}>Search</div>
                             <div className="btn" onClick={this.searchTagByVoice}><i className="fa fa-microphone" /></div>

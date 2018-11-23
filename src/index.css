@@ -153,16 +153,18 @@ body{
 
 .addButton{
   position: relative;
-  bottom:-105%;
-  left:-20%;
+  left: 770px;
+  top: -155px;
 }
 
 .song-list-table {
-  margin-top: -45px;
+  margin-top: -25px;
   height: 100%;
   width: 100%;
   overflow: auto;
   cursor: pointer;
+  padding-top:-50px;
+
 }
 .search-button:hover {
   background-color: #ff2727;
@@ -200,33 +202,30 @@ body{
   height:100px;
   max-width: 100%;
 }
-.footer{
-  position: relative;
-  margin-left: 0%;
-}
+
 .form-control{
   background-color: #E5E5E5;
 }
 .searchField{
   position: relative;
-  top:-25px;
+  top:-10px;
   padding-right: 10px;
-  left:32%;
+  left:101%;
 }
 .input-group{
-  display: inline block;
   position: relative;
   align-items: center;
   align-content: center;
-  top:-20px;
+  top:-15px;
+  width:400px
 }
 .input-group-append{
   display: inline block;
   position: relative;
   align-items: center;
   align-content: center;
-  top:-20px;
-  left:35%
+  top:-10px;
+  left:101%
 }
 
 .scrolling-wrapper {
@@ -237,7 +236,16 @@ body{
 .card {
     display: inline-block;
 }
-.songListFooter{
-
+.chatButton{
+  position: relative;
+  top:-50px;
+  padding-top:-50px;
+  margin-left: 95%;
 }
+.songListFooter{
+  position: relative;
+  height: 280px;
+  width: 1720px;
+}
+
 

@@ -11,6 +11,8 @@ import { ThemeProvider } from 'styled-components';
 
 
 // all available props
+
+// Chat bot theme
 const theme = {
   background: '#E5E5E5',
   fontFamily: 'Helvetica Neue',
@@ -22,7 +24,7 @@ const theme = {
   userBubbleColor: '#fff',
   userFontColor: '#4a4a4a',
 };
-
+// Chat bot steps
 const steps = [
 	{
 		id: '1',
@@ -92,12 +94,12 @@ const steps = [
 	},
 	{
 		id: '11',
-		message: 'To edit or delete content you must be a authenticated by facebook as a admin of the website',
+		message: 'To edit or delete content you must be authenticated by facebook as a admin of the website',
 		trigger: '6',
 	},
 	{
 		id: '12',
-		message: 'To Add a song press, the button in the top right corner and fill out all the necessary fields including a valid youtube URL and album art',
+		message: 'To Add a song press the button in the top right corner and fill out all the necessary fields including a valid youtube URL and album art',
 		trigger: '6',
 	},
 	{
@@ -107,7 +109,7 @@ const steps = [
 	},
 	{
 		id: '14',
-		message: 'To go to the youtube URL click the youtube icon on the bottom and to share to facebook click the facebook icon',
+		message: 'To go to the youtube URL click the youtube icon, to share to facebook click the facebook icon',
 		trigger: '6',
 	},
 
@@ -143,6 +145,7 @@ class App extends React.Component<{}, IState> {
 		this.uploadSong = this.uploadSong.bind(this)
 		
 	}
+	// gets the response from facebook and checks if the userID matches with my own
 	public facebookAuthenticator = (response: any) =>{
 		console.log(response.userID)
 		if(response.userID === "2820542861305358"){
@@ -161,9 +164,11 @@ class App extends React.Component<{}, IState> {
 			<div className="header-wrapper">
 				<div className="container header">
 				<span className="facebookLogin"><Facebook callback={this.facebookAuthenticator}/></span>
+				
 					<img src={songBankLogo} height='100'/>&nbsp;  &nbsp;
 				</div>
 			</div>
+			
 			<div className="songTitle"><b>{this.state.currentSong.title}</b>   
 				<span className="byText">  by  {this.state.currentSong.tags}</span></div>
 			<div className="container">
@@ -171,11 +176,10 @@ class App extends React.Component<{}, IState> {
 					<div className="col-7 ">
 						<SongDetail currentSong={this.state.currentSong} authenticated={this.state.isLoggedIn} />
 					</div>
-					<div className="col-5 split right">
 					<div className="addButton">
 					<div className="btn btn-add" onClick={this.onOpenAdd}>Add Song</div>
 					</div>
-					</div>
+
 					
 				</div>
 			</div>
@@ -213,11 +217,10 @@ class App extends React.Component<{}, IState> {
 					</div>
 				</Modal>
 				</div>
-				<div className="footer right split"><button className="btn chatBotButton" onClick={this.onOpenBot}>Help</button></div>
-				<div className="songListFooter"><SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
-					<div className="addButton">
-						<div className="btn btn-add" onClick={this.onOpenAdd}>Add Song</div>
-					</div>
+				<div className="songListFooter">
+				<SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
+				<div className="chatButton"><button className="btn chatBotButton" onClick={this.onOpenBot}>Help</button></div>
+
 				</div>
 			</div>
 		);
@@ -277,14 +280,14 @@ class App extends React.Component<{}, IState> {
 		})
 	}
 
-	// POST meme
+	// POST song
 	private uploadSong() {
 		const titleInput = document.getElementById("song-title-input") as HTMLInputElement
 		const tagInput = document.getElementById("song-tag-input") as HTMLInputElement
 		const youtubeInput = document.getElementById("youtube-tag-input") as HTMLInputElement
 		let imageFile;
 		if(this.state.uploadFileList === null){
-			 imageFile = "./songbankLogo.png"
+			 return;
 		}
 		else{
 			 imageFile = this.state.uploadFileList[0]
