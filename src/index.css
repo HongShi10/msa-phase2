@@ -14,15 +14,15 @@ body{
   height: 100px;
 }
 .songTitle {
-  top:18%;
-  left:19%;
-  position: fixed;
+  top:5%;
+  left:33%;
+  position: relative;
   text-align: center;
   display:inline-block;
   vertical-align: middle;
-  line-height: 100px;
+  line-height: 80px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 50px;
+  font-size: 40px;
 
 }
 
@@ -59,7 +59,9 @@ body{
 }
 
 .song-img {
-  margin-top: 150px;
+  position: relative;
+  margin-top: -20px;
+  left: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,12 +85,14 @@ body{
 }
 
 .song-done-button {
+  position: relative;
   display: flex;
   align-items: left;
   justify-content: left;
   font-weight: normal;
   font-size: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
+  left: 47%
 }
 
 .btn{
@@ -118,6 +122,8 @@ body{
   pointer-events: none;
 }
 .btn-add {
+  background-color: #910000;
+  border-color: #910000;
   position: absolute;
   right: 0px;
 }
@@ -147,13 +153,14 @@ body{
 
 .addButton{
   position: relative;
-  margin-top: 20px;
-  left: -33%;
+  bottom:-105%;
+  left:-20%;
 }
 
 .song-list-table {
-  margin-top: -40px;
-  height: 360px;
+  margin-top: -45px;
+  height: 100%;
+  width: 100%;
   overflow: auto;
   cursor: pointer;
 }
@@ -167,8 +174,10 @@ body{
   border-color: #ff1313;
 }
 .col-5{
+  position: static;
   margin-top: 180px
 }
+
 .byText{
   font-size: 30px;
 }
@@ -188,27 +197,47 @@ body{
   border-color: #ff2727;
 }
 .albumArt{
-  max-width:70px;
-  max-height:70px;
+  height:100px;
+  max-width: 100%;
 }
 .footer{
   position: relative;
-  margin-left: 94%;
-  margin-top: 8%;
+  margin-left: 0%;
 }
 .form-control{
   background-color: #E5E5E5;
 }
 .searchField{
   position: relative;
-  width: 250px;
-  top: -40px;
-  padding-right: 20px;
+  top:-25px;
+  padding-right: 10px;
+  left:32%;
+}
+.input-group{
+  display: inline block;
+  position: relative;
+  align-items: center;
+  align-content: center;
+  top:-20px;
 }
 .input-group-append{
+  display: inline block;
   position: relative;
-  top: -25px;
-  padding-left: 22px;
+  align-items: center;
+  align-content: center;
+  top:-20px;
+  left:35%
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.card {
+    display: inline-block;
+}
+.songListFooter{
 
 }
 

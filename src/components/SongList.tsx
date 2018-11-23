@@ -5,6 +5,18 @@ import TextField from '@material-ui/core/TextField';
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+
+import Typography from '@material-ui/core/Typography';
+
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+
+
+
+
+
 const theme = createMuiTheme({
     palette: {
       primary: {
@@ -41,11 +53,11 @@ export default class SongList extends React.Component<IProps, {}> {
 			<div className="container song-list-wrapper">
                 <div className="row song-list-heading">
                     <div className="input-group">
-                    <div className="searchField">
-                    <MuiThemeProvider theme={theme}>
-                    <TextField id="search-tag-textbox" label="Search By Artist" type="text" className="form-control" margin="normal"/> 
-                    </MuiThemeProvider>
-                    </div>
+                        <div className="searchField">
+                            <MuiThemeProvider theme={theme}>
+                                <TextField id="search-tag-textbox" label="Search By Artist" type="text" className="form-control" margin="normal"/> 
+                            </MuiThemeProvider>
+                        </div>
                             <div className="input-group-append">
                             <div className="btn btn-outline-secondary search-button" onClick = {this.searchByTag}>Search</div>
                             <div className="btn" onClick={this.searchTagByVoice}><i className="fa fa-microphone" /></div>
@@ -54,11 +66,11 @@ export default class SongList extends React.Component<IProps, {}> {
                     </div>  
                 </div>
                 <div className="row song-list-table">
-                    <table className="table table-striped">
-                        <tbody>
+                    <div className="table table-striped">
+                        <div className="scrolling-wrapper">
                             {this.createTable()}
-                        </tbody>
-                    </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 		);
@@ -121,24 +133,46 @@ export default class SongList extends React.Component<IProps, {}> {
             console.log("Error", error)
         });
     }
+
+    
     // Construct table using song list
 	private createTable() {
-        const table:any[] = []
+
+        const cardStyle = {
+            transitionDuration: '0.3s',
+            height:"140",
+            maxWidth: '100%'
+
+        }
+    
+        // const table:any[] = []
+        const cardList: any[] = []
         const songList = this.props.songs
         if (songList == null) {
-            return table
+            return cardList
         }
 
-        for (let i = 0; i < songList.length; i++) {
-            const children = []
-            const song = songList[i]
-            children.push(<td key={"id" + i}>{<img className="albumArt" src={song.url}/>}</td>)
-            children.push(<td key={"name" + i}>{song.title}</td>)
-            children.push(<td key={"tag" + i}>{song.tags}</td>)
-            table.push(<tr key={i+""} id={i+""} onClick= {this.selectRow.bind(this, i)}>{children}</tr>)
+        Object.keys(songList).forEach((cardIndex)=> {
+            cardList.push (
+                <Card className = "card" style={cardStyle}>
+                <CardActionArea onClick={this.selectRow.bind(this,cardIndex)}>
+                  <CardMedia>{<img className="albumArt" src={songList[cardIndex].url}/>}</CardMedia>
+                  <CardContent>
+                    <Typography gutterBottom={true} variant="h5">
+                      {songList[cardIndex].title}
+                    </Typography>
+                    <Typography component="p">
+                    {songList[cardIndex].tags}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>        
+              </Card>   
+            )
+        })
+            return cardList
+
         }
-        return table
-    }
+        // return table
     
     // song selection handler to display selected song in details component
     private selectRow(index: any) {
@@ -159,3 +193,4 @@ export default class SongList extends React.Component<IProps, {}> {
     }
 
 }
+

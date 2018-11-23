@@ -157,7 +157,7 @@ class App extends React.Component<{}, IState> {
 		const { openBot } = this.state;
 
 		return (
-		<div>
+		<div className="page-wrap">
 			<div className="header-wrapper">
 				<div className="container header">
 				<span className="facebookLogin"><Facebook callback={this.facebookAuthenticator}/></span>
@@ -172,7 +172,6 @@ class App extends React.Component<{}, IState> {
 						<SongDetail currentSong={this.state.currentSong} authenticated={this.state.isLoggedIn} />
 					</div>
 					<div className="col-5 split right">
-						<SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
 					<div className="addButton">
 					<div className="btn btn-add" onClick={this.onOpenAdd}>Add Song</div>
 					</div>
@@ -215,8 +214,12 @@ class App extends React.Component<{}, IState> {
 				</Modal>
 				</div>
 				<div className="footer right split"><button className="btn chatBotButton" onClick={this.onOpenBot}>Help</button></div>
-
-		</div>
+				<div className="songListFooter"><SongList songs={this.state.songs} selectedNewSong={this.selectnewSong} searchByTag={this.fetchSongs}/>
+					<div className="addButton">
+						<div className="btn btn-add" onClick={this.onOpenAdd}>Add Song</div>
+					</div>
+				</div>
+			</div>
 		);
 	}
 
