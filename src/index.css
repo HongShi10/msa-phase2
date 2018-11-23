@@ -254,7 +254,7 @@ body{
 .songListFooter{
   position: relative;
   height: 280px;
-  width: 1720px;
+  margin-left: 30px
 }
 
 .youtubeWelcome{
