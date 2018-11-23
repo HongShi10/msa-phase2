@@ -47,7 +47,7 @@ export default class Facebook extends React.Component<IProps,IState> {
     if (this.state.isLoggedIn) {
       fbContent = (
         <div className="youtubeWelcome">
-          <img src={this.state.picture} alt={this.state.name}/> Welcome {this.state.name}
+          <img src={this.state.picture} alt={this.state.name}/>
         </div>
       );
     } else {

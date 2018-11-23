@@ -36,15 +36,10 @@ body{
   padding-top: 10px;
   height: 90px;
 }
-.logo{
-  left:-70px;
-  position: relative;
-}
 
 .facebook-component{
-  position: relative;
-  left: -770px;
-  top: -7px;
+  margin-left: 30px;
+
 }
 
 /* Selected song */
@@ -142,7 +137,10 @@ body{
 .playButton:focus {
   outline: none;
 }
-
+.logo{
+  position: relative;
+  right:70%;
+}
 .play{
   position: relative;
   top: -15px;
@@ -157,7 +155,7 @@ body{
 
 .addButton{
   position: relative;
-  left: 770px;
+  left: 700px;
   top: -155px;
 }
 
@@ -189,18 +187,7 @@ body{
 }
 
 .facebookLogin{
-  position: relative;
-  left:-70%;
-}
-.chatBotButton{
-  left: 10%px;
-  background-color:#ff4e4e;
-  border-color: #ff4e4e;;
-}
-
-.chatBotButton:hover{
-  background-color:#ff2727;
-  border-color: #ff2727;
+  margin-right: 130%
 }
 .albumArt{
   height:100px;
@@ -255,11 +242,6 @@ body{
   position: relative;
   height: 280px;
   margin-left: 30px
-}
-
-.youtubeWelcome{
-  position: relative;
-  left:75px;
 }
 .songTitleCard{
   overflow-wrap: break-word;
