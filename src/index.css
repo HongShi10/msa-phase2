@@ -14,7 +14,8 @@ body{
   height: 100px;
 }
 .songTitle {
-  top:5%;
+  margin-top: 1%;
+  top:8%;
   left:33%;
   position: relative;
   text-align: center;
@@ -38,8 +39,7 @@ body{
 }
 
 .facebook-component{
-  margin-left: 30px;
-
+  margin-top: -200px;
 }
 
 /* Selected song */
@@ -137,10 +137,7 @@ body{
 .playButton:focus {
   outline: none;
 }
-.logo{
-  position: relative;
-  right:70%;
-}
+
 .play{
   position: relative;
   top: -15px;
@@ -154,9 +151,7 @@ body{
 }
 
 .addButton{
-  position: relative;
-  left: 700px;
-  top: -155px;
+margin-top: -155px;
 }
 
 .song-list-table {
@@ -187,7 +182,8 @@ body{
 }
 
 .facebookLogin{
-  margin-right: 130%
+  margin-top: -70px;
+
 }
 .albumArt{
   height:100px;

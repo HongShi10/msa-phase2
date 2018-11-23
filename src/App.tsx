@@ -178,11 +178,10 @@ class App extends React.Component<{}, IState> {
 		<div className="page-wrap">
 			<div className="header-wrapper">
 				<div className="container header">
-				<span className="facebookLogin"><Facebook callback={this.facebookAuthenticator}/></span>
-				
 					<img className="logo" src={songBankLogo} height='100'/>&nbsp;  &nbsp;
 				</div>
 			</div>
+			<div className="facebookLogin"><Facebook callback={this.facebookAuthenticator}/></div>
 			
 			<div className="songTitle"><b>{this.state.currentSong.title}</b>   
 				<span className="byText">  by  {this.state.currentSong.tags}</span></div>
